@@ -38,9 +38,16 @@ var imageRetina = function(options){
 			var _this = $(this);
 			var src = _this.attr('src');
 
+			// skip non-retina marked images
+			if (typeof _this.data('no-retina') !== 'undefined') {
+				// remove no-retina attribute
+				_this.attr('data-no-retina', null);
+				return true;
+			}
+
 			var tmpSrc = [];
 			var match = src.match(reImageSrc);
-			
+
 			// not a valid src attribute
 			if (match === null){
 				return true;
